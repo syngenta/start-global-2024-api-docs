@@ -88,7 +88,7 @@
     </div>
     <div id="popup" class="popup hidden">
       <div class="popup-container">
-        <h3 id="popupTitle">Invite sent!</h3>
+        <h3 id="popupTitle" class="hidden">Invite sent!</h3>
         <p id="popupDescription">
           You will receive access to the property in few minutes!
         </p>
@@ -118,13 +118,14 @@
       }).then((response) => {
         if (response.status === 200) {
           showPopup({
-            title: "Invitation successful!",
-            description: "You should receive an email with the invitation link",
+            title: "You're almost there!",
+            description: "Now check your email for the confirmation link.",
+            buttonText: "Got it",
           });
         } else {
           showPopup({
-            title: "Ops, looks like something went wrong!",
-            description: "Try again later!",
+            description: "Sorry, we had a problem. Please try again later.",
+            buttonText: "OK",
           });
         }
       });
@@ -151,18 +152,26 @@
 
     function hidePopup() {
       const popup = document.getElementById("popup");
+      const popupTitle = document.getElementById("popupTitle");
 
+      popupTitle.classList.add("hidden");
       popup.classList.add("hidden");
     }
 
     function showPopup(params) {
-      const { title, description } = params;
+      const { title, description, buttonText } = params;
+
+      if (title) {
+        const popupTitle = document.getElementById("popupTitle");
+        popupTitle.innerHTML = title;
+        popupTitle.classList.remove("hidden");
+      }
 
       const popup = document.getElementById("popup");
-      const popupTitle = document.getElementById("popupTitle");
       const popupDescription = document.getElementById("popupDescription");
+      const popupCloseBtn = document.getElementById("popupCloseBtn");
 
-      popupTitle.innerHTML = title;
+      popupCloseBtn.innerHTML = buttonText;
       popupDescription.innerHTML = description;
       popup.classList.remove("hidden");
     }
