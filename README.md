@@ -28,7 +28,7 @@ To visualize the `.yaml` files containing the relevant API Documentation, we rec
 
 - **`docs/api/cropwise/cropwise_remote_sensing_api.yaml`**: Contains relevant documentation for Cropwise's RSS platform, including endpoints to list Satellite images for a given Area of Interest (AOI), and manipulation of those images, to obtain various sub-products
 
-### Cropwise Insights Engine
+### Insights Engine
 
 - **`docs/api/cropwise/Insights Engine API Service Specification v2.0.pdf`**: PDF Document containing API speficiations for the Insights Engine platform
 
