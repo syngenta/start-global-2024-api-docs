@@ -30,10 +30,12 @@
     <div class="wrapper">
       <div class="invite-card-header">
         <div class="invite-card-header-logo">
-          <img
+          <a href="test.html">
+            <img
             alt="cwLogo"
             src="https://app.cropwise.com/static/media/cropwise-logo.66a6df355aec62a2a2470a14acb835d0.svg"
           />
+          </a>
         </div>
         <lottie-player
           class="invite-card-header-animation"
@@ -44,8 +46,8 @@
         >
         </lottie-player>
         <div class="invite-card-header-info">
-          <strong>Join Hackaton on Cropwise! </strong>
-          <p>To: Agrícola Correa</p>
+          <strong>Join Start Global Hackathon! </strong>
+          <p>To: Hackathon Syngenta 2024</p>
         </div>
       </div>
       <div class="invite-card-footer">
@@ -80,6 +82,8 @@
               <option value="10">Group 10</option>
               <option value="11">Group 11</option>
               <option value="12">Group 12</option>
+              <option value="13">Group 13</option>
+              <option value="14">Group 14</option>
             </select>
           </div>
           <input type="submit" value="Join group" id="submitBtn" />
@@ -103,11 +107,7 @@
       const email = document.getElementById("email").value;
       const group = document.getElementById("group-select").value;
 
-      const invitationEndpoint =
-        window.location.protocol +
-        "//" +
-        window.location.host +
-        `/dummy/endpoint`;
+      const invitationEndpoint = `https://vqq2so6q6l.execute-api.us-west-2.amazonaws.com/dev/hackathon/groups/${group}/join`;
 
       fetch(invitationEndpoint, {
         method: "POST",
