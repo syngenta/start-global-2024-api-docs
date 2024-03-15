@@ -1,0 +1,248 @@
+{
+	"info": {
+		"_postman_id": "41612cd3-aafd-4d33-8a37-02608499fa37",
+		"name": "IE_model_APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "30008122"
+	},
+	"item": [
+		{
+			"name": "Prod Authenticate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response is ok\",  ()=>{",
+							"    pm.response.to.have.status(200)",
+							"})",
+							"var jsonData = pm.response.json();",
+							"pm.collectionVariables.set(\"access_token\", jsonData.access_token);",
+							"console.log(\"Done\")"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "{{client_id}}"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "<Add your username>",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "<Add your password>",
+							"type": "text"
+						}
+					]
+				},
+				"url": "{{cw_prod}}/oauth/token"
+			},
+			"response": []
+		},
+		{
+			"name": "Prod Avizio",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"request_version\": \"v1.0\",\r\n    \"fields\": [\r\n        {\r\n            \"models\": [\r\n                {\r\n                    \"name\": \"avizio\",\r\n                    \"version\": \"v1.0\",\r\n                    \"metadata\": {\r\n                        \"business_rule_country_code\": \"FR\"\r\n                    }\r\n                }\r\n            ],\r\n            \"location\": {\r\n                \"type\": \"Feature\",\r\n                \"geometry\": {\r\n                    \"type\": \"Point\",\r\n                    \"coordinates\": [\r\n                        5.3168865738,\r\n                        49.6685693248\r\n                    ]\r\n                }\r\n            },\r\n            \"crop\": \"WINTER_BARLEY\",\r\n            \"crop_variety\": {\r\n                \"name\": \"ABONDANCE\",\r\n                \"traits\": [\r\n                    {\r\n                        \"category\": \"agronomic\",\r\n                        \"type\": \"disease_resistance\",\r\n                        \"disease_code\": \"ERYSGR\",\r\n                        \"value\": 6.0\r\n                    },\r\n                    {\r\n                        \"category\": \"agronomic\",\r\n                        \"type\": \"disease_resistance\",\r\n                        \"disease_code\": \"COCHSA\",\r\n                        \"value\": 5.0\r\n                    },\r\n                    {\r\n                        \"category\": \"agronomic\",\r\n                        \"type\": \"disease_resistance\",\r\n                        \"disease_code\": \"PYRNTE\",\r\n                        \"value\": 5.0\r\n                    },\r\n                    {\r\n                        \"category\": \"agronomic\",\r\n                        \"type\": \"disease_resistance\",\r\n                        \"disease_code\": \"RHYNSE\",\r\n                        \"value\": 3.0\r\n                    },\r\n                    {\r\n                        \"category\": \"agronomic\",\r\n                        \"type\": \"disease_resistance\",\r\n                        \"disease_code\": \"PUCCHD\",\r\n                        \"value\": 5.0\r\n                    },\r\n                    {\r\n                        \"category\": \"agronomic\",\r\n                        \"type\": \"disease_resistance\",\r\n                        \"disease_code\": \"RAMUCC\",\r\n                        \"value\": 7.0\r\n                    },\r\n                    {\r\n                        \"category\": \"agronomic\",\r\n                        \"type\": \"vernalization\",\r\n                        \"value\": 8.0\r\n                    },\r\n                    {\r\n                        \"category\": \"agronomic\",\r\n                        \"type\": \"elongation_earlyness\",\r\n                        \"value\": 3.0\r\n                    },\r\n                    {\r\n                        \"category\": \"agronomic\",\r\n                        \"type\": \"flowering_earlyness\",\r\n                        \"value\": 7.5\r\n                    },\r\n                    {\r\n                        \"category\": \"agronomic\",\r\n                        \"type\": \"height\",\r\n                        \"value\": 4.5\r\n                    }\r\n                ]\r\n            },\r\n            \"planting\": {\r\n                \"date\": \"2021-10-10T00:00:00Z\"\r\n            },\r\n            \"soil\": {\r\n                \"practice\": \"TILL\",\r\n                \"texture\": \"LOAMY_SAND\",\r\n                \"nitrogen\": {\r\n                    \"value\": 120,\r\n                    \"unit\": \"kg/ha\"\r\n                },\r\n                \"calcareous\": false,\r\n                \"organic\": false\r\n            },\r\n            \"observations\": [\r\n                {\r\n                    \"category\": \"yield_potential\",\r\n                    \"yield_potential\": {\r\n                        \"value\": \"75\",\r\n                        \"unit\": \"q/ha\"\r\n                    }\r\n                },\r\n                {\r\n                    \"category\": \"crop_history\",\r\n                    \"values\": [\r\n                        {\r\n                            \"harvest_date\": \"2019-01-01T00:00:00Z\",\r\n                            \"crops\": [\r\n                                \"CORN\"\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"harvest_date\": \"2020-01-01T00:00:00Z\",\r\n                            \"crops\": [\r\n                                \"OILSEED RAPE\"\r\n                            ]\r\n                        }\r\n                    ]\r\n                }\r\n            ],\r\n            \"applications\": [\r\n                {\r\n                    \"sequence\": 1,\r\n                    \"date\": \"2022-04-05T00:00:00Z\",\r\n                    \"products\": [\r\n                        {\r\n                            \"name\": \"COMET 200\",\r\n                            \"rate_of_use\": {\r\n                                \"value\": 0.2,\r\n                                \"unit\": \"L/ha\"\r\n                            },\r\n                            \"diseases\": [\r\n                                {\r\n                                    \"code\": \"PSDCHA\",\r\n                                    \"is_effective\": false\r\n                                },\r\n                                {\r\n                                    \"code\": \"ERYSGR\",\r\n                                    \"is_effective\": false\r\n                                },\r\n                                {\r\n                                    \"code\": \"GIBBZE\",\r\n                                    \"is_effective\": false\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"name\": \"CURBATUR\",\r\n                            \"rate_of_use\": {\r\n                                \"value\": 0.4,\r\n                                \"unit\": \"L/ha\"\r\n                            },\r\n                            \"diseases\": [\r\n                                {\r\n                                    \"code\": \"PSDCHA\",\r\n                                    \"is_effective\": true\r\n                                },\r\n                                {\r\n                                    \"code\": \"ERYSGR\",\r\n                                    \"is_effective\": true\r\n                                },\r\n                                {\r\n                                    \"code\": \"GIBBZE\",\r\n                                    \"is_effective\": true\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                },\r\n                {\r\n                    \"sequence\": 2,\r\n                    \"date\": \"2022-04-25T00:00:00Z\",\r\n                    \"products\": [\r\n                        {\r\n                            \"name\": \"CERATAVO ERA\",\r\n                            \"rate_of_use\": {\r\n                                \"value\": 0.55,\r\n                                \"unit\": \"L/ha\"\r\n                            },\r\n                            \"diseases\": [\r\n                                {\r\n                                    \"code\": \"PSDCHA\",\r\n                                    \"is_effective\": false\r\n                                },\r\n                                {\r\n                                    \"code\": \"ERYSGR\",\r\n                                    \"is_effective\": false\r\n                                },\r\n                                {\r\n                                    \"code\": \"GIBBZE\",\r\n                                    \"is_effective\": true\r\n                                }\r\n                            ]\r\n                        },\r\n                        {\r\n                            \"name\": \"TWIST 500 SC\",\r\n                            \"rate_of_use\": {\r\n                                \"value\": 0.11,\r\n                                \"unit\": \"L/ha\"\r\n                            },\r\n                            \"diseases\": [\r\n                                {\r\n                                    \"code\": \"PSDCHA\",\r\n                                    \"is_effective\": false\r\n                                },\r\n                                {\r\n                                    \"code\": \"ERYSGR\",\r\n                                    \"is_effective\": true\r\n                                },\r\n                                {\r\n                                    \"code\": \"GIBBZE\",\r\n                                    \"is_effective\": true\r\n                                }\r\n                            ]\r\n                        }\r\n                    ]\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{prod}}/v2.0/predictions"
+			},
+			"response": []
+		},
+		{
+			"name": "Prod DSSAT v2.0",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"request_version\": \"v1.0\",\r\n    \"fields\": [\r\n        {\r\n            \"models\": [\r\n                {\r\n                    \"name\": \"DSSAT\",\r\n                    \"version\": \"v2.0\"\r\n                }\r\n            ],\r\n            \"location\": {\r\n                \"type\": \"Feature\",\r\n                \"geometry\": {\r\n                    \"type\": \"Point\",\r\n                    \"coordinates\": [\r\n                        -58.737,\r\n                        -29.025\r\n                    ]\r\n                }\r\n            },\r\n            \"crop\": \"MAIZE\",\r\n            \"crop_variety\": {\r\n                \"name\": \"SYN897\"\r\n            },\r\n            \"planting\": {\r\n                \"date\": \"2023-10-28T00:00:00Z\",\r\n                \"depth\": {\r\n                    \"value\": 7.0,\r\n                    \"unit\": \"cm\"\r\n                },\r\n                \"density\": {\r\n                    \"value\": 5.0,\r\n                    \"unit\": \"plants/m2\"\r\n                },\r\n                \"row_spacing\": {\r\n                    \"value\": 76.0,\r\n                    \"unit\": \"cm\"\r\n                },\r\n                \"field_water_capacity\": {\r\n                    \"value\": 90,\r\n                    \"unit\": \"percentage\"\r\n                }\r\n            },\r\n            \"water_supply\": {\r\n                \"is_irrigated\": false\r\n            },\r\n            \"time_period\": {\r\n                \"historical\": {\r\n                    \"start_date\": \"2004-11-24T00:00:00Z\",\r\n                    \"end_date\": \"2022-05-09T00:00:00Z\"\r\n                },\r\n                \"forecast\": {\r\n                    \"start_date\": \"2023-11-07T00:00:00Z\",\r\n                    \"end_date\": \"2023-12-02T00:00:00Z\"\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{prod}}/v2.0/predictions"
+			},
+			"response": []
+		},
+		{
+			"name": "Prod DSSAT-RY",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"request_version\": \"v1.0\",\r\n    \"fields\": [\r\n        {\r\n            \"id\": \"cwp:base::field:id:2ee9a2deac13e1097ee6dabb67903e5f\",\r\n            \"models\": [\r\n                {\r\n                    \"name\": \"DSSAT\",\r\n                    \"version\": \"v3.0\",\r\n                    \"models\": [\r\n                        {\r\n                            \"name\": \"relative_yield\",\r\n                            \"version\": \"v1.0\"\r\n                        }\r\n                    ]\r\n                }\r\n            ],\r\n            \"location\": {\r\n                \"type\": \"Feature\",\r\n                \"geometry\": {\r\n                    \"type\": \"Point\",\r\n                    \"coordinates\": [\r\n                        -90,\r\n                        40\r\n                    ]\r\n                },\r\n                \"properties\": {\r\n                    \"distance_to_grid\": {\r\n                        \"value\": 334,\r\n                        \"unit\": \"km\"\r\n                    }\r\n                }\r\n            },\r\n            \"crop\": \"CORN\",\r\n            \"current_practice\": {\r\n                \"crop_variety\": {\r\n                    \"relative_maturity\": \"RM114\"\r\n                },\r\n                \"planting\": {\r\n                    \"date\": \"2023-5-21T18:19:11Z\",\r\n                    \"depth\": {\r\n                        \"value\": \"2\",\r\n                        \"unit\": \"cm\"\r\n                    },\r\n                    \"density\": {\r\n                        \"value\": \"42781.64\",\r\n                        \"unit\": \"plants/ac\"\r\n                    },\r\n                    \"row_spacing\": {\r\n                        \"value\": \"68\",\r\n                        \"unit\": \"cm\"\r\n                    },\r\n                    \"field_water_capacity\": {\r\n                        \"value\": \"56\",\r\n                        \"unit\": \"percent\"\r\n                    }\r\n                },\r\n                \"water_supply\": {\r\n                    \"is_irrigated\": true,\r\n                    \"impact_water_table\": {\r\n                        \"value\": \"55\",\r\n                        \"unit\": \"percent\"\r\n                    }\r\n                }\r\n            },\r\n            \"benchmark_practice\": {\r\n                \"crop_variety\": {\r\n                    \"relative_maturity\": \"RM114\"\r\n                },\r\n                \"planting\": {\r\n                    \"date\": \"2023-4-09T18:19:11Z\",\r\n                    \"depth\": {\r\n                        \"value\": \"5\",\r\n                        \"unit\": \"cm\"\r\n                    },\r\n                    \"density\": {\r\n                        \"value\": \"22923.02\",\r\n                        \"unit\": \"plants/ac\"\r\n                    },\r\n                    \"row_spacing\": {\r\n                        \"value\": \"98\",\r\n                        \"unit\": \"cm\"\r\n                    },\r\n                    \"field_water_capacity\": {\r\n                        \"value\": \"76\",\r\n                        \"unit\": \"percent\"\r\n                    }\r\n                },\r\n                \"water_supply\": {\r\n                    \"is_irrigated\": true\r\n                }\r\n            },\r\n            \"time_period\": {\r\n                \"historical\": {\r\n                    \"start_date\": \"2013-02-02T18:19:11Z\",\r\n                    \"end_date\": \"2024-01-10T18:19:11Z\"\r\n                },\r\n                \"forecast\": {\r\n                    \"frequency\": {\r\n                        \"value\": 10,\r\n                        \"unit\": \"day\"\r\n                    },\r\n                    \"start_date\": \"2024-1-1T18:19:11Z\",\r\n                    \"end_date\": \"2024-1-29T18:19:11Z\"\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{prod}}/v2.0/predictions"
+			},
+			"response": []
+		},
+		{
+			"name": "Prod Dry-down",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"request_version\": \"v1.0\",\r\n    \"fields\": [\r\n        {\r\n            \"models\": [\r\n                {\r\n                    \"name\": \"dry-down\",\r\n                    \"version\": \"v1.0\"\r\n                }\r\n            ],\r\n            \"location\": {\r\n                \"type\": \"Feature\",\r\n                \"geometry\": {\r\n                    \"type\": \"Point\",\r\n                    \"coordinates\": [\r\n                        -96.89707422,\r\n                        39.8253396\r\n                    ]\r\n                }\r\n            },\r\n            \"crop\": \"CORN\",\r\n            \"observations\": [\r\n                {\r\n                    \"category\": \"crop_growth_stages\",\r\n                    \"values\": [\r\n                        {\r\n                            \"scale\": \"ritchie\",\r\n                            \"stage_name\": \"R6\",\r\n                            \"date\": \"2023-08-28\"\r\n                        }\r\n                    ]\r\n                }\r\n            ],\r\n            \"crop_variety\": {\r\n                \"attribute\": {\r\n                    \"drying_coefficient_k\": 0.0336\r\n                }\r\n            },\r\n            \"attributes\": {\r\n                \"grain_moisture_at_harvest\": 15.0\r\n            }\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{prod}}/v2.0/predictions"
+			},
+			"response": []
+		},
+		{
+			"name": "Prod GDD",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{access_token}}"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"models\": [\r\n        {\r\n            \"name\": \"gdd\",\r\n            \"version\": \"v1.0\"\r\n        }\r\n    ],\r\n    \"geometry\": {\r\n        \"type\": \"Point\",\r\n        \"coordinates\": [\r\n            -83.65,\r\n            41.46\r\n        ]\r\n    },\r\n    \"gdd_flowering\": 1500,\r\n    \"gdd_black_layer\": 1800,\r\n    \"planting_date\": \"2021-03-02\",\r\n    \"last_observed_stage\": {\r\n        \"stage\": \"V1\",\r\n        \"date\": \"2021-04-03\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{prod}}/v2.0/predictions"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "prod",
+			"value": "https://api.insights.cropwise.com",
+			"type": "string"
+		},
+		{
+			"key": "qa",
+			"value": "https://qa.api.insights.cropwise.com",
+			"type": "string"
+		},
+		{
+			"key": "dev",
+			"value": "https://dev.api.insights.cropwise.com",
+			"type": "string"
+		},
+		{
+			"key": "cw_dev",
+			"value": "https://api.dev.base.cropwise.com",
+			"type": "string"
+		},
+		{
+			"key": "cw_staging",
+			"value": "https://api.staging.base.cropwise.com",
+			"type": "string"
+		},
+		{
+			"key": "cw_prod",
+			"value": "https://api.base.cropwise.com",
+			"type": "string"
+		},
+		{
+			"key": "client_id",
+			"value": "966000683481459db34b04a3f1ef6f3e",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": ""
+		}
+	]
+}
