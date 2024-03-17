@@ -7,7 +7,7 @@
 - [API Documentation](#api-documentation)
     - [Cropwise Platform](#cropwise-platform)
     - [Cropwise Remote Sensing Services](#cropwise-remote-sensing-services)
-    - [Cropwise Insights Engine](#cropwise-insights-engine)
+    - [Insights Engine](#cropwise-insights-engine)
     - [CE Hub](#ce-hub)
 
 
@@ -30,11 +30,11 @@ To visualize the `.yaml` files containing the relevant API Documentation, we rec
 
 ### Insights Engine
 
-- **`docs/api/cropwise/Insights Engine API Service Specification v2.0.pdf`**: PDF Document containing API speficiations for the Insights Engine platform
+- **`docs/api/insights engine/Insights Engine API Service Specification v2.0.docx`**: Document containing API speficiations for the Insights Engine platform. On this page you'll also find a Postman Collection with request examples and a video with explanations from the API
 
 ### CE Hub
 
-- **`docs/api/ce hub/CEHub API Service Specification.pdf`**: PDF Document with specifications on how to use CE Hub's API
+- **`docs/api/ce hub/`**: Contains a document with specifications on how to use CE Hub's API, as well as a Postman collection with examples of requests.
  
 
 ## Contributing
