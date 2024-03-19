@@ -7,7 +7,7 @@
 - [API Documentation](#api-documentation)
     - [Cropwise Platform](#cropwise-platform)
     - [Cropwise Remote Sensing Services](#cropwise-remote-sensing-services)
-    - [Insights Engine](#cropwise-insights-engine)
+    - [Insights Engine](insights-engine)
     - [CE Hub](#ce-hub)
 
 
